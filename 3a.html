@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3a</title>
+</head>
+<body>
+    <div id="result"></div>
+    <script>
+    function calculateTax(taxRate) {
+        // This function returns another function that calculates the net price
+        return function(productPrice) {
+            const taxAmount = productPrice * taxRate;
+            const netPrice = productPrice + taxAmount;
+            return netPrice;
+        };
+    }
+
+    // Creating closure functions with different tax rates
+    const tax1 = calculateTax(0.08); // 8% tax
+    const tax2 = calculateTax(0.06); // 6% tax
+
+    // Calculating net prices
+    const r1 = tax1(2000); // Net price with 8% tax
+    const r2 = tax2(2000); // Net price with 6% tax
+
+    // Logging results to console
+    console.log(r1); // Expected output: 2160
+    console.log(r2); // Expected output: 2120
+
+    // Displaying results in the HTML
+    document.getElementById('result').innerText = "Price 1 with 8% tax = $" + r1.toFixed(2) + "\nPrice 2 with 6% tax = $" + r2.toFixed(2);
+    </script>
+</body>
+</html>
